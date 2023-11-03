@@ -1,0 +1,14 @@
+get_unique_chars <- function(input_string) {
+  unique_chars <- unique(strsplit(input_string, "")[[1]])
+  return(unique_chars)
+}
+get_unique_numbers <- function(input_vector) {
+  unique_numbers <- unique(input_vector)
+  return(unique_numbers)
+}
+input_string <- "abracadabra"
+input_vector <- c(3, 1, 2, 3, 4, 2, 5, 6, 1)
+unique_chars <- get_unique_chars(input_string)
+unique_numbers <- get_unique_numbers(input_vector)
+cat("Unique characters in the string: ", paste(unique_chars, collapse = " "), "\n")
+cat("Unique numbers in the vector: ", paste(unique_numbers, collapse = " "), "\n")
