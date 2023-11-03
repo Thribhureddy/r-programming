@@ -1,0 +1,9 @@
+x <- 1:10
+y <- c("apple", "banana", "cherry")
+z <- data.frame(Name = c("Alice", "Bob", "Carol"), Age = c(25, 30, 35))
+object_names <- ls()
+cat("Names of objects in memory:\n")
+print(object_names)
+object_details <- objects()
+cat("Details of objects in memory:\n")
+print(object_details)
