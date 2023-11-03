@@ -1,0 +1,14 @@
+matrix_rows <- matrix(1:20, nrow = 5, ncol = 4, byrow = TRUE)
+
+matrix_labels <- matrix(letters[1:9], nrow = 3, byrow = TRUE)
+
+matrix_columns <- matrix(c(10, 20, 30, 40), nrow = 2, ncol = 2)
+
+cat("5x4 Matrix Filled by Rows:\n")
+print(matrix_rows)
+
+cat("\n3x3 Matrix with Labels:\n")
+print(matrix_labels)
+
+cat("\n2x2 Matrix Filled by Columns:\n")
+print(matrix_columns)
