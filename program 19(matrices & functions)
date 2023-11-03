@@ -1,0 +1,13 @@
+vector1 <- c(1, 2, 3, 4, 5)
+matrix1 <- matrix(6:15, nrow = 2, ncol = 5)
+my_function <- function(x) {
+  return(x * 2)
+}
+
+my_list <- list(
+  "Vector" = vector1,
+  "Matrix" = matrix1,
+  "Function" = my_function
+)
+
+print(my_list)
