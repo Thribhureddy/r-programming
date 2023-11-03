@@ -1,0 +1,12 @@
+sieve_of_eratosthenes <- function(n) {
+  is_prime <- rep(TRUE, n+1)
+  is_prime[1:2] <- FALSE
+  for (i in 2:sqrt(n)) {
+    if (is_prime[i]) {
+      is_prime[i*i:n] <- FALSE
+    }
+  }
+  return(which(is_prime))
+}
+primes_up_to_50 <- sieve_of_eratosthenes(50)
+print(primes_up_to_50)
