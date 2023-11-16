@@ -1,0 +1,44 @@
+# Load the Iris dataset
+data(iris)
+
+# (i) Find dimension, Structure, Summary statistics, Standard Deviation of all features
+print("(i) Dataset Dimension:")
+print(dim(iris))
+print("\nDataset Structure:")
+print(str(iris))
+print("\nSummary Statistics:")
+print(summary(iris))
+print("\nStandard Deviation of Features:")
+print(apply(iris[, 1:4], 2, sd))
+
+# (ii) Find mean and standard deviation of features grouped by three species
+mean_by_species <- aggregate(. ~ Species, data = iris, mean)
+sd_by_species <- aggregate(. ~ Species, data = iris, sd)
+print("\n(ii) Mean by Species:")
+print(mean_by_species[, c("Species", "Sepal.Length", "Sepal.Width", "Petal.Length", "Petal.Width")])
+print("\n(ii) Standard Deviation by Species:")
+print(sd_by_species[, c("Species", "Sepal.Length", "Sepal.Width", "Petal.Length", "Petal.Width")])
+
+# (iii) Find quantile value of sepal width and length
+print("\n(iii) Quantile Values:")
+print(quantile(iris$Sepal.Length))
+print(quantile(iris$Sepal.Width))
+
+# (iv) Create new data frame named iris1 with a new column named Sepal.Length.Cate
+iris1 <- iris
+iris1$Sepal.Length.Cate <- cut(iris1$Sepal.Length, breaks = quantile(iris1$Sepal.Length), labels = c("Short", "Medium", "Long"))
+
+# (V) Average value of numerical variables by two categorical variables: Species and Sepal.Length.Cate
+mean_by_species_cate <- aggregate(. ~ Species + Sepal.Length.Cate, data = iris1, mean)
+print("\n(V) Average Value by Species and Sepal.Length.Cate:")
+print(mean_by_species_cate)
+
+# (vi) Average mean value of numerical variables by Species and Sepal.Length.Cate
+mean_by_species_cate_species <- aggregate(. ~ Species + Sepal.Length.Cate, data = mean_by_species_cate, mean)
+print("\n(vi) Average Mean Value by Species and Sepal.Length.Cate:")
+print(mean_by_species_cate_species)
+
+# (vii) Create Pivot Table based on Species and Sepal.Length.Cate
+pivot_table <- reshape2::dcast(mean_by_species_cate_species, Species ~ Sepal.Length.Cate)
+print("\n(vii) Pivot Table:")
+print(pivot_table)
