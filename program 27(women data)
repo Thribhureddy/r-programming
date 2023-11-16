@@ -1,0 +1,13 @@
+# Access the built-in women dataset
+data(women)
+
+# Create a factor based on the height variable
+height_factor <- cut(women$height, breaks = c(50, 60, 70), labels = c("Short", "Medium", "Tall"))
+
+# Display the factor levels
+print("Factor Levels:")
+print(levels(height_factor))
+
+# Display the factor for each observation
+print("\nFactor for Each Observation:")
+print(height_factor)
