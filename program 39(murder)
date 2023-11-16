@@ -1,0 +1,79 @@
+import pandas as pd
+
+# Assuming you have the dataset loaded into a DataFrame named df
+# If not, you can load it using: df = pd.read_csv('path_to_data/USArrests.csv')
+
+# Display number of features and their types
+print("Number of Features:", len(df.columns))
+print("Feature Types:")
+print(df.dtypes)
+
+# Display number of records for each feature
+print("\nNumber of Records for Each Feature:")
+print(df.count())
+
+# Display statistical features of the data
+print("\nStatistical Features:")
+print(df.describe())
+
+
+# Find the state with the largest total number of rape
+max_rape_state = df[df['Rape'] == df['Rape'].max()]['State'].values[0]
+print(f"\nState with the Largest Total Number of Rape: {max_rape_state}")
+
+
+# Find the state with the max crime rate for murder
+max_murder_state = df[df['Murder'] == df['Murder'].max()]['State'].values[0]
+print(f"\nState with the Max Crime Rate for Murder: {max_murder_state}")
+
+# Find the state with the min crime rate for murder
+min_murder_state = df[df['Murder'] == df['Murder'].min()]['State'].values[0]
+print(f"State with the Min Crime Rate for Murder: {min_murder_state}")
+
+
+
+# Find the correlation among the features
+correlation_matrix = df.corr()
+print("\nCorrelation Matrix:")
+print(correlation_matrix)
+
+# Find the states with assault arrests more than the median
+median_assault = df['Assault'].median()
+high_assault_states = df[df['Assault'] > median_assault]['State'].values
+print(f"\nStates with Assault Arrests More Than Median: {', '.join(high_assault_states)}")
+
+
+# Find the states in the bottom 25% of murder
+bottom_25_percent_murder_states = df[df['Murder'] < df['Murder'].quantile(0.25)]['State'].values
+print(f"\nStates in the Bottom 25% of Murder: {', '.join(bottom_25_percent_murder_states)}")
+
+
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+# Histogram and Density Plot of Murder Arrests
+plt.figure(figsize=(10, 6))
+sns.histplot(df['Murder'], kde=True, bins=15)
+plt.title('Histogram and Density Plot of Murder Arrests')
+plt.xlabel('Murder Arrests')
+plt.ylabel('Density')
+plt.show()
+
+
+# Scatter plot with color representing assault arrest rates
+plt.figure(figsize=(12, 8))
+sns.scatterplot(x='UrbanPop', y='Murder', data=df, hue='Assault', palette='coolwarm', size='Assault', sizes=(20, 200))
+plt.title('Relationship Between Murder Arrest Rate and Urban Population Proportion')
+plt.xlabel('Urban Population Proportion (%)')
+plt.ylabel('Murder Arrest Rate')
+plt.show()
+
+
+# Bar graph of murder rate for each state
+plt.figure(figsize=(15, 8))
+sns.barplot(x='State', y='Murder', data=df, palette='viridis')
+plt.title('Murder Rate for Each State')
+plt.xlabel('State')
+plt.ylabel('Murder Rate')
+plt.xticks(rotation=90)
+plt.show()
