@@ -1,0 +1,31 @@
+import seaborn as sns
+import matplotlib.pyplot as plt
+from seaborn import countplot
+
+# Load the Titanic dataset
+titanic = sns.load_dataset('titanic')
+
+# Set the style for the plots
+sns.set(style="whitegrid")
+
+# a. Bar chart to show details of “Survived” on the Titanic based on passenger Class
+plt.figure(figsize=(8, 6))
+countplot(x='class', hue='survived', data=titanic, palette='Set1')
+plt.title('Survival Details Based on Passenger Class')
+plt.xlabel('Passenger Class')
+plt.ylabel('Count')
+plt.show()
+
+# b. Modify the above plot based on the gender of people who survived
+plt.figure(figsize=(8, 6))
+countplot(x='class', hue='survived', data=titanic, palette='Set1', hue_order=[1, 0], col='sex')
+plt.suptitle('Survival Details Based on Passenger Class and Gender', y=1.02)
+plt.show()
+
+# c. Histogram plot to show the distribution of the feature “Age”
+plt.figure(figsize=(8, 6))
+sns.histplot(titanic['age'].dropna(), bins=30, kde=True, color='skyblue')
+plt.title('Distribution of Passenger Ages on the Titanic')
+plt.xlabel('Age')
+plt.ylabel('Count')
+plt.show()
