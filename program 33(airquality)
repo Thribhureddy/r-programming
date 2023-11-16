@@ -1,0 +1,27 @@
+# Assuming you have the 'airquality' dataset available in your environment
+
+# (i) Get the Summary Statistics of air quality dataset
+summary_stats <- summary(airquality)
+print("(i) Summary Statistics:")
+print(summary_stats)
+
+# (ii) Melt airquality data set and display as a long-format data
+library(reshape2)
+melted_airquality_long <- melt(airquality)
+print("\n(ii) Melted Airquality Data (Long Format):")
+print(melted_airquality_long)
+
+# (iii) Melt airquality data and specify month and day to be “ID variables”
+melted_airquality_id_vars <- melt(airquality, id.vars=c("Month", "Day"))
+print("\n(iii) Melted Airquality Data with Month and Day as ID Variables:")
+print(melted_airquality_id_vars)
+
+# (iv) Cast the molten airquality data set with respect to month and date features
+casted_airquality <- dcast(melted_airquality_id_vars, Month + Day ~ variable)
+print("\n(iv) Casted Airquality Data:")
+print(casted_airquality)
+
+# (v) Use cast function appropriately and compute the average of Ozone, Solar.R, Wind, and Temperature per month
+average_airquality_per_month <- dcast(melted_airquality_id_vars, Month ~ variable, fun.aggregate = mean)
+print("\n(v) Average of Ozone, Solar.R, Wind, and Temperature per Month:")
+print(average_airquality_per_month)
