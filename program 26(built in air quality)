@@ -1,0 +1,23 @@
+# Call the built-in dataset airquality
+data(airquality)
+
+# Check if it is a data frame
+if (is.data.frame(airquality)) {
+  print("airquality is a data frame.")
+} else {
+  print("airquality is not a data frame.")
+}
+
+# Order the entire data frame by the first and second column
+ordered_airquality <- airquality[order(airquality$Month, airquality$Day), ]
+
+# Display the ordered data frame
+print("\nOrdered Data Frame:")
+print(ordered_airquality)
+
+# Remove the variables 'Solar.R' and 'Wind'
+modified_airquality <- airquality[, !(names(airquality) %in% c('Solar.R', 'Wind'))]
+
+# Display the modified data frame
+print("\nData Frame after removing 'Solar.R' and 'Wind':")
+print(modified_airquality)
