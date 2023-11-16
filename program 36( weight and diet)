@@ -1,0 +1,29 @@
+import seaborn as sns
+import matplotlib.pyplot as plt
+
+# Assuming you have a DataFrame named 'data' with columns 'Weight', 'Diet', and 'Time'
+# Replace 'data' with your actual DataFrame name
+
+# a. Create a Box plot for "Weight" grouped by "Diet"
+plt.figure(figsize=(10, 6))
+sns.boxplot(x='Diet', y='Weight', data=data)
+plt.title('Box Plot of Weight Grouped by Diet')
+plt.xlabel('Diet')
+plt.ylabel('Weight')
+plt.show()
+
+# b. Create a Histogram for "Weight" features belonging to Diet-1 category
+plt.figure(figsize=(10, 6))
+sns.histplot(data[data['Diet'] == 1]['Weight'], bins=20, kde=True, color='skyblue')
+plt.title('Histogram of Weight for Diet-1 Category')
+plt.xlabel('Weight')
+plt.ylabel('Count')
+plt.show()
+
+# c. Create Scatter plot for "Weight" vs "Time" grouped by Diet
+plt.figure(figsize=(10, 6))
+sns.scatterplot(x='Time', y='Weight', hue='Diet', data=data, palette='viridis')
+plt.title('Scatter Plot of Weight vs Time Grouped by Diet')
+plt.xlabel('Time')
+plt.ylabel('Weight')
+plt.show()
