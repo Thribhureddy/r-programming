@@ -1,0 +1,21 @@
+# Given values
+values <- c(90, 50, 70, 80, 70, 60, 20, 30, 80, 90, 20)
+
+# (i) Compute mean, median, and mode
+mean_value <- mean(values)
+median_value <- median(values)
+mode_value <- as.numeric(names(sort(table(values), decreasing = TRUE)[1]))
+
+print("(i) Mean, Median, and Mode:")
+print(paste("Mean:", mean_value))
+print(paste("Median:", median_value))
+print(paste("Mode:", mode_value))
+
+# (ii) Find 2nd highest and 3rd lowest values
+sorted_values <- sort(unique(values))
+second_highest <- sorted_values[length(sorted_values) - 1]
+third_lowest <- sorted_values[3]
+
+print("\n(ii) 2nd Highest and 3rd Lowest Values:")
+print(paste("2nd Highest:", second_highest))
+print(paste("3rd Lowest:", third_lowest))
