@@ -1,0 +1,11 @@
+# Empty plot
+plot.new()
+title(main = "Empty Plot", xlab = "X-axis", ylab = "Y-axis")
+
+# Empty plot with specified axes limits
+plot.new()
+plot.window(xlim = c(0, 10), ylim = c(0, 20))
+title(main = "Empty Plot with Axes Limits", xlab = "X-axis", ylab = "Y-axis")
+
+
+
