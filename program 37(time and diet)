@@ -1,0 +1,28 @@
+import pandas as pd
+import statsmodels.api as sm
+
+# Assuming you have a DataFrame named 'data' with columns 'Time', 'Diet', and 'Weight'
+# You need to replace 'data' with your actual DataFrame name
+
+# a. Create a multi-regression model
+X = data[['Time', 'Diet']]
+X = sm.add_constant(X)  # Add a constant term to the predictor
+y = data['Weight']
+
+model = sm.OLS(y, X).fit()
+
+# Display model summary
+print(model.summary())
+
+# b. Predict weight for Time=10 and Diet=1
+new_data = {'Time': [10], 'Diet': [1]}
+new_data = sm.add_constant(pd.DataFrame(new_data))
+predicted_weight = model.predict(new_data)
+
+print(f"\nPredicted Weight for Time=10 and Diet=1: {predicted_weight.values[0]}")
+
+# c. Find the error in the model for the same
+actual_weight = data[(data['Time'] == 10) & (data['Diet'] == 1)]['Weight'].values[0]
+error = actual_weight - predicted_weight.values[0]
+
+print(f"Error in the Model: {error}")
