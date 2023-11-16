@@ -1,0 +1,47 @@
+import pandas as pd
+
+data = {
+    'Month': list(range(1, 13)),
+    'Spends': [1000, 4000, 5000, 4500, 3000, 4000, 9000, 11000, 15000, 12000, 7000, 3000],
+    'Sales': [9914, 40487, 54324, 50044, 34719, 42551, 94871, 118914, 158484, 131348, 78504, 36284]
+}
+
+df = pd.DataFrame(data)
+
+print(df)
+
+
+import pandas as pd
+from sklearn.model_selection import train_test_split
+from sklearn.linear_model import LinearRegression
+from sklearn.metrics import mean_squared_error
+import numpy as np
+
+# Assuming df is your DataFrame from the previous example
+# If not, make sure to load or create the DataFrame
+
+# Split the data into features (X) and target variable (y)
+X = df[['Spends']]
+y = df['Sales']
+
+# Split the data into training and testing sets
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+
+# Create a linear regression model
+model = LinearRegression()
+
+# Train the model on the training set
+model.fit(X_train, y_train)
+
+# Make predictions on the test set
+y_pred = model.predict(X_test)
+
+# Evaluate the model
+mse = mean_squared_error(y_test, y_pred)
+rmse = np.sqrt(mse)
+print(f'Root Mean Squared Error: {rmse}')
+
+# Predict sales for Spend=13500
+spend_to_predict = [[13500]]
+predicted_sales = model.predict(spend_to_predict)
+print(f'Predicted Sales for Spend=13500: {predicted_sales[0]}')
