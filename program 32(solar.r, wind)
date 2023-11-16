@@ -1,0 +1,46 @@
+# Load the airquality dataset
+data(airquality)
+
+# Display the structure of the dataset
+print("Dataset Structure:")
+print(str(airquality))
+
+# Display the summary statistics of the dataset
+print("\nSummary Statistics:")
+print(summary(airquality))
+
+# Display the first few rows of the dataset
+print("\nFirst Few Rows:")
+print(head(airquality))
+
+# Display the dimensions of the dataset
+print("\nDimensions:")
+print(dim(airquality))
+
+# Display unique values of the Month variable
+print("\nUnique Months:")
+print(unique(airquality$Month))
+
+# Display unique values of the Day variable
+print("\nUnique Days:")
+print(unique(airquality$Day))
+
+# Display the correlation matrix among the variables
+print("\nCorrelation Matrix:")
+print(cor(airquality[, c("Ozone", "Solar.R", "Wind", "Temp")]))
+
+# Create a pair plot to visualize relationships between variables
+pairs(airquality[, c("Ozone", "Solar.R", "Wind", "Temp")])
+
+# Create a histogram of the Ozone variable
+hist(airquality$Ozone, main = "Histogram of Ozone Concentration", xlab = "Ozone (ppb)")
+
+# Create a scatter plot between Solar.R and Temp variables
+plot(airquality$Solar.R, airquality$Temp, main = "Scatter Plot: Solar.R vs Temp", xlab = "Solar.R", ylab = "Temp")
+
+# Create box plots to visualize the distribution of variables by Month
+par(mfrow = c(2, 2))
+boxplot(Ozone ~ Month, data = airquality, main = "Ozone by Month")
+boxplot(Solar.R ~ Month, data = airquality, main = "Solar.R by Month")
+boxplot(Wind ~ Month, data = airquality, main = "Wind by Month")
+boxplot(Temp ~ Month, data = airquality, main = "Temp by Month")
